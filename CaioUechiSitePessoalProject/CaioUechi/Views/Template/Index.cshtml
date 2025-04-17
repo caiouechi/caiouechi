@@ -1,0 +1,103 @@
+﻿@model CaioUechi.Models.TemplateModel
+@{
+    Layout = null; // or your existing layout
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Gerador: TAKAKI Assinatura</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0f2f5;
+        }
+
+        .panel-custom {
+            border: 2px solid #00539F;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+            .panel-custom .panel-heading {
+                background-color: #FFD200;
+                color: #00539F;
+                font-weight: bold;
+                text-align: center;
+                border-bottom: 2px solid #00539F;
+                border-radius: 6px 6px 0 0;
+            }
+
+        .form-control:focus {
+            border-color: #FFD200;
+            box-shadow: 0 0 8px rgba(255, 210, 0, 0.6);
+            background-color: #fffbea;
+        }
+
+        .btn-custom {
+            background-color: #00539F;
+            color: #FFD200;
+            border: none;
+            transition: background 0.3s ease;
+        }
+
+            .btn-custom:hover,
+            .btn-custom:focus {
+                background-color: #003f7f;
+                color: #FFD200;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                <div class="panel panel-default panel-custom">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Gerador: TAKAKI Assinatura</h3>
+                    </div>
+                    <div class="panel-body">
+                        @using (Html.BeginForm("Generate", "Template", FormMethod.Post, new { @class = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Name)
+                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Enter name", required = "required" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Posicao, "Posição")
+                                @Html.TextBoxFor(m => m.Posicao, new { @class = "form-control", placeholder = "Enter posição", required = "required" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Telefone1, "Telefone 1")
+                                @Html.TextBoxFor(m => m.Telefone1, new { @class = "form-control", placeholder = "(XX) XXXX-XXXX", required = "required" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Telefone2, "Telefone 2 (Cel/WhatsApp)")
+                                @Html.TextBoxFor(m => m.Telefone2, new { @class = "form-control", placeholder = "(XX) 9XXXX-XXXX", required = "required" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Creci, "CRECI")
+                                @Html.TextBoxFor(m => m.Creci, new { @class = "form-control", placeholder = "Enter CRECI number", required = "required" })
+                            </div>
+                            <button type="submit" class="btn btn-custom btn-block">Generate &amp; Download</button>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>
